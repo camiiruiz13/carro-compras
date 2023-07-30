@@ -7,12 +7,9 @@ import com.camilo.ucc.edu.co.carrocomprasthymeleaf.app.models.entities.Producto;
 import com.camilo.ucc.edu.co.carrocomprasthymeleaf.app.services.cliente.IClienteService;
 import com.camilo.ucc.edu.co.carrocomprasthymeleaf.app.services.factura.IFacturaService;
 import com.camilo.ucc.edu.co.carrocomprasthymeleaf.app.services.producto.IProductoService;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -58,6 +55,25 @@ public class FacturaController {
     @GetMapping(value = "/cargar-productos/{term}", produces = { "application/json" })
     public @ResponseBody List<Producto> cargarProductos(@PathVariable String term) {
         return productoService.buscarPorProducto(term);
+    }
+
+    @PostMapping("/form")
+    public String guardar(Factura factura, @RequestParam(name = "itemId", required = false)
+                          Long[] itemId, @RequestParam(name = "cantidad[]", required = false)
+                          Integer [] cantidad, RedirectAttributes flash, SessionStatus status){
+        for (int i = 0; i < itemId.length; i++) {
+            Producto producto = productoService.findProductoById(itemId[i]);
+            ItemFactura linea = new ItemFactura();
+            linea.setProducto(producto);
+            factura.addItemFactura(linea);
+
+            log.info("ID:" + itemId[i].toString() +
+                    ", cantidad: " + itemId[i].toString());
+        }
+        facturaService.saveFactura(factura);
+        status.setComplete();
+        flash.addFlashAttribute("success", "Factura creada con exito!");
+        return "redirect:/ver/" + factura.getCliente().getId();
     }
 
 }
