@@ -2,16 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="~{/layout/layout :: head}"></head>
 <body>
-    <header th:insert="~{/layout/layout :: header}"></header>
-    <div class="card">
-        <div class="card-body">
-            <a th:href="@{'/ver/' + ${factura.cliente.id}}"
-             class="card-link">
-             <i class="fa-solid fa-circle-user"></i>
-            </a>
-        </div>
+<header th:insert="~{/layout/layout :: header}"></header>
+<div class="card">
+    <div class="card-body">
+        <a th:href="@{'/ver/' + ${factura.cliente.id}}"
+           class="card-link">
+            <i class="fa-solid fa-circle-user"></i>
+        </a>
     </div>
-    <footer th:insert="~{/layout/layout :: footer}"></footer>     
+</div>
+<footer th:insert="~{/layout/layout :: footer}"></footer>
 
 </body>
 </html>
