@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{/layout/layout :: head}"></head>
+<body>
+    <header th:insert="~{/layout/layout :: header}"></header>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title" th:text="${titulo}">Title</h4>
+            </div>
+            <form th:action="@{/form}" th:object="${cliente}" method="post" enctype="multipart/form-data">
+            <div class="card-body">        
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input type="text" th:field="*{nombre}"
+                    class="form-control"  id="nombre" aria-describedby="helpId" placeholder="Nombres"
+                    th:errorclass="'form-control text-muted'" />
+                  <small id="helpId" class="form-text text-muted"
+                  th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+                </div>
+                <div class="mb-3">
+                  <label for="apellido" class="form-label">Apellido</label>
+                  <input type="text" th:field="*{apellido}"
+                    class="form-control"  id="apellido" aria-describedby="helpId" 
+                    placeholder="Apellidos" th:errorclass="'form-control text-muted'" />
+                  <small id="helpId" class="form-text text-muted"
+                  th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+                </div>
+                <div class="mb-3">
+                  <label for="correo" class="form-label">Correo</label>
+                  <input type="email" th:field="*{email}" class="form-control" 
+                   id="correo" aria-describedby="emailHelpId" placeholder="abc@mail.com"
+                   th:errorclass="'form-control text-muted'" />
+                  <small id="emailHelpId" class="form-text text-muted"
+                  th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                </div>
+                <div class="mb-3">
+                  <label for="fecha" class="form-label">Fecha</label>
+                  <input type="text" class="form-control" th:field="*{fechaCreacion}"
+                  id="fecha" aria-describedby="helpId" placeholder="yyyy-MM--dd"
+                  th:errorclass="'form-text text-muted'" />
+                  <small id="helpId" class="form-text text-muted"
+                  th:if="${#fields.hasErrors('fechaCreacion')}" th:errors="*{fechaCreacion}" ></small>
+                </div>
+                <div class="mb-3">
+                  <label for="foto" class="form-label">Foto</label>
+                  <input type="file" class="form-control" name="file" id="foto" placeholder="Foto" >
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+            
+        </form>
+        </div>
+        
+
+        
+    </div>
+    <footer th:insert="~{/layout/layout :: footer}"></footer>
+</body>
+</html>

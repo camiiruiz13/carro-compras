@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{/layout/layout :: head}"></head>
+<body>
+    <header th:insert="~{/layout/layout :: header}"></header>
+    <div class="card">
+        <div class="card-body">
+            <a th:href="@{'/ver/' + ${factura.cliente.id}}"
+             class="card-link">
+             <i class="fa-solid fa-circle-user"></i>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-lg-4 ">
+            <div class="card">
+                <div class="card-body">
+                    <form th:action="@{/factura/form/}" th:object="${factura}"
+                    method="post">
+                    <div class="mb-3">
+                      <label for="cliente" class="form-label" th:text="'Cliente'"></label>
+                      <input class="form-control" name="cliente" id="cliente" 
+                      th:value="${factura.cliente.nombre} + ' ' + ${factura.cliente.apellido}" 
+                      aria-describedby="helpId" disabled='disabled' />
+                    </div>
+                    <div class="mb-3">
+                      <label for="descripcion" class="form-label" th:text="'Descripción'"></label>
+                      <input type="text" th:field="*{descripcion}"
+                        class="form-control"  id="descripcion" aria-describedby="helpId" 
+                        th:errorclass="'form-control is-invalid'" />
+                      <small id="helpId" class="form-text text-muted"
+                      th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small>
+                    </div>
+                    <div class="mb-3">
+                      <label for="observacion" class="form-label"
+                      th:text="'Observación'"></label>
+                      <textarea th:field="*{observacion}" class="form-control" name="" id="" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="buscar_producto" class="form-label" th:text="'Buscar producto'"></label>
+                      <input type="text"
+                         name="buscar_producto" id="buscar_producto" class="form-control" />
+                    </div>
+
+                    <div class="d-grid gap-2">
+                      <button type="submit" class="btn btn-primary">
+                          <i class="fa-solid fa-play"></i>
+                      </button>
+                    </div>
+                </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <footer th:insert="~{/layout/layout :: footer}">
+    </footer>
+    <!--script th:insert="~{/factura/js/autocomplete-productos :: javascript}"></script-->
+    <script type="text/javascript" th:src="@{/js/autocomplete.js}"></script>
+
+</body>
+</html>

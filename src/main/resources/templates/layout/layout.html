@@ -1,0 +1,67 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+  <title th:text="'Spring boot mvc'+ ${titulo}">Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+   crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+  <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</head>
+
+<body>
+    <header th:fragment="header">
+    <!-- place navbar here -->
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+          <div class="container">
+            <a class="navbar-brand" href="#">Spring boot</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/form}" aria-current="page">Registrar <span class="visually-hidden">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/listar}">Clientes</a>
+                    </li>
+                </ul>
+                
+            </div>
+      </div>
+    </nav>    
+  </header>
+  <div class="container"></div>
+  <footer th:fragment="footer" class="container">
+    <!-- place footer here -->
+    <hr />
+    <img  th:src="@{/images/spring.png}" width="100" height="100" alt="Spring logo" />
+    <p>
+        Powered by <a href="https://spring.io/projects/spring-boot">Spring boot</a>
+        Y <a href="http://www.thymeleaf.org">Thymeleaf</a>
+      </p>
+      <p>
+        Este proyecto fue desarrollado en la parte del back por el IDE intellij + Spring plugins(STS Spring boot)
+        , Frontend visual studio Code , Alumno Cristian Camilo Ruiz <br/> ® Company 2023,
+        Inc. Todos los derechos reservados. Terminos de uso y privacidad
+      </p>
+     <!-- Bootstrap JavaScript Libraries -->
+     <script th:src="@{/js/jquery-3.7.0.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jquery-ui.min.js}"></script>
+  </footer>
+ 
+  
+</body>
+
+</html>
