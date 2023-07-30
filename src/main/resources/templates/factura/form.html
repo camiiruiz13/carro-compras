@@ -11,9 +11,9 @@
             </a>
         </div>
     </div>
-    <div class="container">
+    <div class="container py-4">
         <div class="col-lg-4 ">
-            <div class="card">
+            <div class="card text-center">
                 <div class="card-body">
                     <form th:action="@{/factura/form/}" th:object="${factura}"
                     method="post">
@@ -42,23 +42,6 @@
                          name="buscar_producto" id="buscar_producto" class="form-control" />
                     </div>
 
-                        <table th:insert="~{/factura/plantilla-items :: itemsFactura}"></table>
-
-                        <table id="cargarItemProductos"
-                               class="table table-sm table-striped table-hover">
-                            <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th>Total</th>
-                                <th>Eliminar</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                        <h5>Total <span class="badge badge-secondary" id="gran_total">0</span></h5>
                     <div class="d-grid gap-2">
                       <button type="submit" class="btn btn-primary">
                           <i class="fa-solid fa-play"></i>
